@@ -2,13 +2,14 @@ import numpy as np
 from configs.constants import G, h
 
 class Body:
-    def __init__(self, mass, position, velocity, acceleration):
+    def __init__(self, mass, position, velocity, acceleration, force):
         self.mass = mass
         self.position = position
         self.velocity = velocity
         self.acceleration = acceleration
+        self.force = force
     
-    def __computeGravitationalForce(self, other):
+    def computeGravitationalForce(self, other):
         displacement = other.position - self.position
         return other.mass * (displacement/(np.linalg.norm(displacement) ** 3))
     
@@ -19,12 +20,3 @@ class Body:
                 a += self.__computeGravitationalForce(other)
         a *= G
         return a
-    
-    def __eulerStep(self, current, rate, step):
-        return current + step * rate
-
-    def computeEulerVelocity(self):
-        return self.__eulerStep(self.velocity, self.acceleration, h)
-    
-    def computeEulerPosition(self):
-        return self.__eulerStep(self.position, self.velocity, h)
