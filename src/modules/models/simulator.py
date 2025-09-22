@@ -3,24 +3,31 @@ from modules.integration.euler import EulerIntegrator
 
 import numpy as np
 class Simulator:
-    def __init__(self, integrator):
+    def __init__(self, integrator, bodies):
         self.integrator = integrator
+        self.bodies = bodies
+        self.positionHistory = None
+
+    def __computeAllForces(self):
+        for body in self.bodies:
+            body.force = body.computeTotalForce(self.bodies)
     
-    def run(self, bodies):
-        numBodies = len(bodies)
-        dim = len(bodies[0].position)
-        
-        recordPositions = np.zeros((N, numBodies, dim))
-        
-        for i in range(N):
-            for j, body in enumerate(bodies):
-                recordPositions[i, j, :] = body.position
-                
-            newStates = self.integrator.step(bodies)
-            for body, (newPos, newVel, newForce) in zip(bodies, newStates):
-                body.position = newPos
-                body.velocity = newVel
-                body.force = newForce
+    def getSimulationData(self):
+        bodyNames = [body.name for body in self.bodies]
+        return self.positionHistory, bodyNames
+
+    def run(self):
+        self.positionHistory = np.zeros((len(self.bodies), N, 3))
+
+        self.__computeAllForces()
+
+        for step in range(N):
+            for i, body in enumerate(self.bodies):
+                self.positionHistory[i, step, :] = body.position
             
-        return recordPositions
+                self.integrator.step(self.bodies)
+
+                self.__computeAllForces()
+        
+        return self.getSimulationData()
     

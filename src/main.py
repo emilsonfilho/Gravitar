@@ -8,9 +8,9 @@ from modules.render.visualization import visualizePositions
 import numpy as np
 
 
-sun = Body(1.9885e30, np.array([0.0, 0.0, 0.0]), np.array([0.0, 0.0, 0.0]), np.array([0.0, 0.0, 0.0]), np.array([0.0, 0.0, 0.0]))
-earth = Body(5.972e24, np.array([1.495e11, 0.0, 0.0]), np.array([0.0, 29.78e3, 0.0]), np.array([0.0, 0.0, 0.0]), np.array([0.0,0.0,0.0]))
-moon = Body(7.35e22, np.array([1.496e11, 3.844e8, 0.0]), np.array([1022.0, 29780.0, 0.0]), np.array([0.0, 0.0, 0.0]), np.array([0.0,0.0,0.0]))
+sun = Body("Sol", 1.9885e30, np.array([0.0, 0.0, 0.0]), np.array([0.0, 0.0, 0.0]), np.array([0.0, 0.0, 0.0]), np.array([0.0, 0.0, 0.0]))
+earth = Body("Terra", 5.972e24, np.array([1.495e11, 0.0, 0.0]), np.array([0.0, 29.78e3, 0.0]), np.array([0.0, 0.0, 0.0]), np.array([0.0,0.0,0.0]))
+moon = Body("Lua", 7.35e22, np.array([1.496e11, 3.844e8, 0.0]), np.array([1022.0, 29780.0, 0.0]), np.array([0.0, 0.0, 0.0]), np.array([0.0,0.0,0.0]))
 
 
 """
@@ -45,21 +45,6 @@ def euler():
     for body in bodies:
         body.force = body.computeTotalForce(bodies)
 
-    positionHistory = [[] for _ in bodies]
-
-    with open("simulacao.txt", "w") as f:
-        for step in range(N):
-            integrator.step(bodies)
-            
-            for body in bodies:
-                body.force = body.computeTotalForce(bodies)
-
-            for i, body in enumerate(bodies):
-                positionHistory[i].append(body.position.copy())
-
-                pos_str = f"{body.position[0]}|{body.position[1]}|{body.position[2]}"
-                vel_str = f"{body.velocity[0]}|{body.velocity[1]}|{body.velocity[2]}"
-                force_str = f"{body.force[0]}|{body.force[1]}|{body.force[2]}"
-                f.write(f"{pos_str}|{vel_str}|{force_str}\n")
-    visualizePositions(np.array(positionHistory), ["Sol", "Terra", "Lua"])
+    positionHistory, bodyNames = Simulator(integrator, bodies).run()
+    visualizePositions(np.array(positionHistory), bodyNames)
 euler()

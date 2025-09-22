@@ -2,12 +2,13 @@ import numpy as np
 from configs.constants import G, h
 
 class Body:
-    def __init__(self, mass, position, velocity, acceleration, force):
+    def __init__(self, name, mass, position, velocity, acceleration, force):
         self.mass = mass
         self.position = position
         self.velocity = velocity
         self.acceleration = acceleration
         self.force = force
+        self.name = name
     
     def computeGravitationalForce(self, other):
         displacement = other.position - self.position
