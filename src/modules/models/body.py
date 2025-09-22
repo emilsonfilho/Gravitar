@@ -13,6 +13,14 @@ class Body:
         displacement = other.position - self.position
         return other.mass * (displacement/(np.linalg.norm(displacement) ** 3))
     
+    def computeTotalForce(self, bodies):
+        total_force = np.zeros_like(self.position)
+        for other in bodies:
+            if other != self:
+                total_force += self.computeGravitationalForce(other)
+        total_force *= G * self.mass  # F = m * sum( ... )
+        return total_force
+    
     def computeAcceleration(self, bodies):
         a = np.zeros_like(self.position)
         for other in bodies:

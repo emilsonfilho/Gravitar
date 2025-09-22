@@ -17,10 +17,10 @@ class Simulator:
                 recordPositions[i, j, :] = body.position
                 
             newStates = self.integrator.step(bodies)
-            for body, (newPos, newVel, acc) in zip(bodies, newStates):
+            for body, (newPos, newVel, newForce) in zip(bodies, newStates):
                 body.position = newPos
                 body.velocity = newVel
-                body.acceleration = acc
+                body.force = newForce
             
         return recordPositions
     

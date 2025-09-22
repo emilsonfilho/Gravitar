@@ -22,11 +22,15 @@ def visualizePositions(records, bodyNames, outFile="sim.mp4", animationRate=20):
     
     ax.legend()
     
-    def update(frame):
+    # Trecho de visualization.py (CORRIGIDO)
+    def update(frame, records, points):
         for i, point in enumerate(points):
-            point.set_data([records[frame, i, 0]], [records[frame, i, 1]])
-            point.set_3d_properties([records[frame, i, 2]])
+            # Acessando na ordem correta: [corpo, frame, coordenada]
+            point.set_data([records[i, frame, 0]], [records[i, frame, 1]])
+            point.set_3d_properties([records[i, frame, 2]])
         return points
     
-    anim = FuncAnimation(fig, update, frames=N, interval=50, blit=True)
+    #anim = FuncAnimation(fig, update, frames=N, interval=50, blit=True)
+    # Linha CORRIGIDA
+    anim = FuncAnimation(fig, update, frames=N, fargs=(records, points), interval=50, blit=True)
     anim.save(outFile, writer="ffmpeg", fps=animationRate)
