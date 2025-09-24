@@ -37,7 +37,6 @@ def visualizePositions(records, bodyNames, outFile="sim.mp4", animationRate=20):
     points = [ax.plot([], [], [], 'o', color=c, label=name, markersize=6)[0] for c, name in zip(colors, bodyNames)]
     trails = [ax.plot([], [], [], '-', color=c, linewidth=1, alpha=0.5)[0] for c in colors]
 
-    ax.legend(facecolor="black", edgecolor="white", labelcolor="white")
     ax.grid(False)
     
     # Trecho de visualization.py (CORRIGIDO)
