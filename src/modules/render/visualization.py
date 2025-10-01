@@ -36,10 +36,8 @@ def visualizePositions(records, outFile="sim.mp4", animationRate=20):
 
     ax.grid(False)
     
-    # Trecho de visualization.py (CORRIGIDO)
     def update(frame, records, points, trails):
         for i, (point, trail) in enumerate(zip(points, trails)):
-            # Acessando na ordem correta: [corpo, frame, coordenada]
             point.set_data([records[i, frame, 0]], [records[i, frame, 1]])
             point.set_3d_properties([records[i, frame, 2]])
 
@@ -47,8 +45,6 @@ def visualizePositions(records, outFile="sim.mp4", animationRate=20):
             trail.set_3d_properties(records[i, :frame, 2])
         return points + trails
     
-    #anim = FuncAnimation(fig, update, frames=N, interval=50, blit=True)
-    # Linha CORRIGIDA
     anim = FuncAnimation(fig, update, frames=N, fargs=(records, points, trails), interval=50, blit=True)
     plt.show()
     anim.save(outFile, writer="ffmpeg", fps=animationRate)
