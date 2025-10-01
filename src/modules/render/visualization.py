@@ -5,7 +5,7 @@ from configs.constants import N
 
 import matplotlib.pyplot as plt
 
-def visualizePositions(records, bodyNames, outFile="sim.mp4", animationRate=20):
+def visualizePositions(records, outFile="sim.mp4", animationRate=20):
     fig = plt.figure(facecolor="black")
     ax = fig.add_subplot(111, projection="3d", facecolor="black")
 
@@ -29,12 +29,9 @@ def visualizePositions(records, bodyNames, outFile="sim.mp4", animationRate=20):
     ax.set_ylim(allY.min()*0.9, allY.max()*1.1)
     ax.set_zlim(allZ.min()*0.9, allZ.max()*1.1)
     ax.set_aspect("equal")
-    
-    # colors = ["yo","co","wo"]
-    # points = [ax.plot([], [], c, label=name)[0] for c, name in zip(colors, bodyNames)]
 
     colors = ["yellow", "cyan", "white"]
-    points = [ax.plot([], [], [], 'o', color=c, label=name, markersize=6)[0] for c, name in zip(colors, bodyNames)]
+    points = [ax.plot([], [], [], 'o', color=c, markersize=6)[0] for c in colors]
     trails = [ax.plot([], [], [], '-', color=c, linewidth=1, alpha=0.5)[0] for c in colors]
 
     ax.grid(False)
