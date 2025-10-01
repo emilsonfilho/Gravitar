@@ -53,4 +53,5 @@ def visualizePositions(records, bodyNames, outFile="sim.mp4", animationRate=20):
     #anim = FuncAnimation(fig, update, frames=N, interval=50, blit=True)
     # Linha CORRIGIDA
     anim = FuncAnimation(fig, update, frames=N, fargs=(records, points, trails), interval=50, blit=True)
+    plt.show()
     anim.save(outFile, writer="ffmpeg", fps=animationRate)

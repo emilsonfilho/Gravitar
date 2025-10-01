@@ -17,8 +17,8 @@ moon = Body("Lua", 7.35e22, np.array([1.496e11, 3.844e8, 0.0]), np.array([1022.0
 sun = Body(
     name="Corpo 1",
     mass=1,
-    position=np.array([1, 0, 0.0]),
-    velocity=np.array([0, 0.7598, 0.0]),
+    position=np.array([0.5773502691896258, 0.0, 0.0]),
+    velocity=np.array([0.0, 0.7598356856515927, 0.0]),
     acceleration=np.array([0.0, 0.0, 0.0]),
     force=np.array([0.0, 0.0, 0.0])
 )
@@ -27,8 +27,8 @@ sun = Body(
 earth = Body(
     name="Corpo 2",
     mass=1,
-    position=np.array([-0.5, 0.866, 0.0]), # Posição inicial
-    velocity=np.array([-0.658, -0.380, 0.0]), # Velocidade para manter a órbita
+    position=np.array([-0.2886751345948128, 0.5, 0.0]), # Posição inicial
+    velocity=np.array([-0.6580370064762464, -0.37991784282579616, 0.0]), # Velocidade para manter a órbita
     acceleration=np.array([0.0, 0.0, 0.0]),
     force=np.array([0.0, 0.0, 0.0])
 )
@@ -37,8 +37,8 @@ earth = Body(
 moon = Body(
     name="Corpo 3",
     mass=1,
-    position=np.array([-0.5, -0.866, 0.0]), # Posição inicial próxima ao planeta
-    velocity=np.array([0.658, -0.380, 0.0]), # Velocidade do planeta + velocidade orbital
+    position=np.array([-0.2886751345948132, -0.5, 0.0]), # Posição inicial próxima ao planeta
+    velocity=np.array([0.6580370064762461, -0.37991784282579666, 0.0]), # Velocidade do planeta + velocidade orbital
     acceleration=np.array([0.0, 0.0, 0.0]),
     force=np.array([0.0, 0.0, 0.0])
 )
