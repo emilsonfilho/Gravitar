@@ -13,8 +13,7 @@ class Simulator:
             body.force = body.computeTotalForce(self.bodies)
     
     def getSimulationData(self):
-        bodyNames = [body.name for body in self.bodies]
-        return self.positionHistory, bodyNames
+        return self.positionHistory
 
     def run(self):
         self.positionHistory = np.zeros((len(self.bodies), N, 3))
