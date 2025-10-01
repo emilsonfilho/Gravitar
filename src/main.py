@@ -6,9 +6,9 @@ from utils.configLoader import ConfigLoader
 import numpy as np
 import sys
 
-if len(sys.argv) < 2:
-    print("Error: You must provide a configuration file path as a command-line argument.")
-    print("Usage: python3 main.py <path_to_your_config_file>")
+if len(sys.argv) < 3:
+    print("Error: You must provide a configuration file path and a visualization mode as command-line arguments.")
+    print("Usage: python3 main.py <path_to_your_config_file> <visualization_mode>")
     sys.exit(1)
 
 def runSimulation():
@@ -21,5 +21,5 @@ def runSimulation():
         body.force = body.computeTotalForce(bodies)
 
     positionHistory = Simulator(integrator, bodies).run()
-    visualizePositions(np.array(positionHistory))
+    visualizePositions(np.array(positionHistory), mode=sys.argv[2])
 runSimulation()
