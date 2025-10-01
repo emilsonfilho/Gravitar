@@ -11,7 +11,7 @@ if len(sys.argv) < 2:
     print("Usage: python3 main.py <path_to_your_config_file>")
     sys.exit(1)
 
-def euler():
+def runSimulation():
     data = ConfigLoader.loadConfig(sys.argv[1])['bodies']
     bodies = ConfigLoader.load(data)
 
@@ -22,4 +22,4 @@ def euler():
 
     positionHistory = Simulator(integrator, bodies).run()
     visualizePositions(np.array(positionHistory))
-euler()
+runSimulation()
