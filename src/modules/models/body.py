@@ -20,11 +20,3 @@ class Body:
                 total_force += self.computeGravitationalForce(other)
         total_force *= G * self.mass  # F = m * sum( ... )
         return total_force
-    
-    def computeAcceleration(self, bodies):
-        a = np.zeros_like(self.position)
-        for other in bodies:
-            if other != self:
-                a += self.__computeGravitationalForce(other)
-        a *= G
-        return a
