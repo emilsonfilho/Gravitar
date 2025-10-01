@@ -4,8 +4,8 @@ from configs.constants import G, h
 class Body:
     def __init__(self, mass, position, velocity):
         self.mass = mass
-        self.position = position
-        self.velocity = velocity
+        self.position = np.array(position, dtype=float)
+        self.velocity = np.array(velocity, dtype=float)
         self.acceleration = np.zeros(3, dtype=float)
         self.force = np.zeros(3, dtype=float)
     
