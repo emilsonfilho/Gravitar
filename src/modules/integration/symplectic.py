@@ -1,7 +1,7 @@
 from configs.constants import h
 from modules.integration.integrator import Integrator
 
-class CrankNicolsonIntegrator(Integrator):
+class SymplecticEulerIntegrator(Integrator):
     def step(self, bodies):
         for body in bodies:
             body.velocity += (body.force / body.mass) * h

@@ -1,5 +1,5 @@
 from modules.models.simulator import Simulator
-from modules.integration.crank import CrankNicolsonIntegrator
+from modules.integration.symplectic import SymplecticEulerIntegrator
 from modules.render.visualization import visualizePositions
 from utils.configLoader import ConfigLoader
 
@@ -15,7 +15,7 @@ def euler():
     data = ConfigLoader.loadConfig(sys.argv[1])['bodies']
     bodies = ConfigLoader.load(data)
 
-    integrator = CrankNicolsonIntegrator()
+    integrator = SymplecticEulerIntegrator()
 
     for body in bodies:
         body.force = body.computeTotalForce(bodies)
