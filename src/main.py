@@ -1,4 +1,3 @@
-from modules.models.body import Body
 from modules.models.simulator import Simulator
 from modules.integration.crank import CrankNicolsonIntegrator
 from modules.render.visualization import visualizePositions
