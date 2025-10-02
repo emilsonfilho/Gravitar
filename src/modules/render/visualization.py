@@ -4,6 +4,7 @@ from configs.constants import N
 from utils.visualHandler import VisualizationModeHandler
 
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 def visualizePositions(records, outFile="sim.mp4", animationRate=20, mode="plot"):
     fig = plt.figure(facecolor="black")
