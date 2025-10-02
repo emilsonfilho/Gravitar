@@ -1,11 +1,12 @@
 from matplotlib.animation import FuncAnimation
-from mpl_toolkits.mplot3d import Axes3D
 
 from configs.constants import N
+from utils.visualHandler import VisualizationModeHandler
 
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-def visualizePositions(records, outFile="sim.mp4", animationRate=20):
+def visualizePositions(records, outFile="sim.mp4", animationRate=20, mode="plot"):
     fig = plt.figure(facecolor="black")
     ax = fig.add_subplot(111, projection="3d", facecolor="black")
 
@@ -46,5 +47,4 @@ def visualizePositions(records, outFile="sim.mp4", animationRate=20):
         return points + trails
     
     anim = FuncAnimation(fig, update, frames=N, fargs=(records, points, trails), interval=50, blit=True)
-    plt.show()
-    anim.save(outFile, writer="ffmpeg", fps=animationRate)
+    VisualizationModeHandler(mode, anim, outFile, fps=animationRate).run()
