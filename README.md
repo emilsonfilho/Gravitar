@@ -1,4 +1,9 @@
 # Gravitar 🌌
+<div align="center">
+  <img src="https://github.com/emilsonfilho/Gravitar/blob/main/demos/pcircle.gif?raw=true" width="32%" />
+  <img src="https://github.com/emilsonfilho/Gravitar/blob/main/demos/figure8.gif?raw=true" width="32%" />
+  <img src="https://github.com/emilsonfilho/Gravitar/blob/main/demos/circle.gif?raw=true" width="32%" />
+</div>
 
 Simulador de gravidade N-Corpos (N-Body) desenvolvido em Python.
 
